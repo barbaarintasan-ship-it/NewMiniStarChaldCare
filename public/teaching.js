@@ -696,8 +696,8 @@ function showDomainPlaybook(domainId) {
 
 /* ── 8c. Activity Coach Detail View ── */
 function openActivityCoach(actId) {
+  if (COACH_ACTIVITY !== actId) COACH_DETAIL_TAB = 'prepare';
   COACH_ACTIVITY = actId;
-  COACH_DETAIL_TAB = 'prepare';
   var found = getActivityById(actId);
   if (!found) return;
   var act = found.activity;
