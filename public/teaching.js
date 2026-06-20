@@ -695,6 +695,12 @@ function showDomainPlaybook(domainId) {
 }
 
 /* ── 8c. Activity Coach Detail View ── */
+function switchCoachTab(actId, tabId) {
+  COACH_DETAIL_TAB = tabId;
+  COACH_ACTIVITY = actId;
+  openActivityCoach(actId);
+}
+
 function openActivityCoach(actId) {
   if (COACH_ACTIVITY !== actId) COACH_DETAIL_TAB = 'prepare';
   COACH_ACTIVITY = actId;
@@ -725,7 +731,7 @@ function openActivityCoach(actId) {
   h += '<div class="subtabs" style="margin-bottom:14px">';
   tabs.forEach(function(tab){
     h += '<button class="' + (COACH_DETAIL_TAB===tab.id?'active':'') + '" ' +
-      'onclick="COACH_DETAIL_TAB=\'' + tab.id + '\';openActivityCoach(\'' + actId + '\')">' +
+      'onclick="switchCoachTab(\'' + actId + '\',\'' + tab.id + '\')">' +
       tab.icon + ' ' + tab.label + '</button>';
   });
   h += '</div>';
