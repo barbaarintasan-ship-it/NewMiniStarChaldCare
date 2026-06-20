@@ -238,7 +238,53 @@ const I18N_ES = {
   sch_ul_milestones:'<li>Comprensión lectora al nivel del grado</li><li>Resolución de problemas matemáticos de múltiples pasos</li><li>Completa un proyecto desde la idea hasta la presentación</li><li>Orienta a un niño más pequeño de forma independiente</li><li>Crea y explica un presupuesto simple</li>',
   sch_ul_activities:'<li>Creación y presentación de mini planes de negocios</li><li>Desafíos STEAM: construir, probar, mejorar</li><li>Club de debate y escritura persuasiva</li><li>Proyectos de investigación sobre ayudantes comunitarios</li><li>Diarios de metas y tableros de visión</li>',
   sch_ul_entrepreneurship:'<li>Etapa 1: Identificar problemas que vale la pena resolver</li><li>Etapa 2: Diseñar y crear un prototipo de solución</li><li>Etapa 3: Presentar a compañeros y recibir retroalimentación</li><li>Planificación de presupuesto para un micro-proyecto de clase</li>',
-  pr_star_ul:'<li>Aprendizaje estructurado alineado a la edad y etapa de desarrollo de cada niño</li><li>Actividades creativas prácticas con objetivos de aprendizaje claros</li><li>Desarrollo de habilidades social-emocionales e interacción grupal guiada</li><li>Supervisión atenta y amorosa de cuidadores capacitados</li><li>Seguimiento del progreso y reportes para padres entregados cada semana</li>'
+  pr_star_ul:'<li>Aprendizaje estructurado alineado a la edad y etapa de desarrollo de cada niño</li><li>Actividades creativas prácticas con objetivos de aprendizaje claros</li><li>Desarrollo de habilidades social-emocionales e interacción grupal guiada</li><li>Supervisión atenta y amorosa de cuidadores capacitados</li><li>Seguimiento del progreso y reportes para padres entregados cada semana</li>',
+  // Incidents
+  inc_title:'Incidentes',inc_new:'Nuevo Incidente',inc_none:'No hay incidentes registrados.',
+  inc_child:'Niño',inc_date:'Fecha',inc_time:'Hora',inc_loc:'Lugar',inc_desc:'Descripción',
+  inc_injury:'Tipo de Lesión',inc_aid:'Primeros Auxilios',inc_sev:'Severidad',inc_status:'Estado',
+  inc_notified:'Padre Notificado',inc_mark_notified:'Marcar Notificado',
+  inc_sev_low:'Leve',inc_sev_med:'Moderado',inc_sev_high:'Grave',
+  inc_st_open:'Abierto',inc_st_resolved:'Resuelto',inc_st_closed:'Cerrado',
+  inc_save:'Guardar Incidente',inc_cancel:'Cancelar',inc_detail:'Ver Detalle',
+  // Medications
+  med_title:'Medicamentos',med_new:'Nuevo Medicamento',med_none:'Sin medicamentos activos.',
+  med_child:'Niño',med_name_lbl:'Medicamento',med_dose:'Dosis',med_freq:'Frecuencia',
+  med_instr:'Instrucciones',med_by:'Recetado por',med_auth:'Autorizado por Padre',
+  med_log:'Registrar Administración',med_log_title:'Historial de Administración',
+  med_given:'Dado a las',med_missed:'Dosis Perdida',med_notes:'Notas',
+  med_deactivate:'Desactivar',med_log_btn:'Registrar',med_log_none:'Sin registros hoy.',
+  med_logs_today:'Registros de Hoy',med_active:'Activo',
+  // Calendar
+  cal_title:'Calendario',cal_new:'Nuevo Evento',cal_none:'No hay eventos.',
+  cal_month:'Mes',cal_week:'Semana',cal_agenda:'Agenda',
+  cal_ev_title:'Título del Evento',cal_ev_desc:'Descripción',cal_ev_type:'Tipo',
+  cal_ev_start:'Fecha de Inicio',cal_ev_end:'Fecha de Fin',cal_ev_time_s:'Hora de Inicio',cal_ev_time_e:'Hora de Fin',
+  cal_ev_allday:'Todo el día',cal_ev_save:'Guardar Evento',cal_ev_del:'Eliminar',cal_ev_edit:'Editar',
+  cal_type_holiday:'Día Festivo',cal_type_meeting:'Reunión',
+  cal_type_activity:'Actividad',cal_type_reminder:'Recordatorio',cal_today:'Hoy',
+  // Notifications
+  notif_title:'Notificaciones',notif_none:'Sin notificaciones nuevas.',notif_unread:'No leídas',
+  notif_mark_read:'Marcar leída',notif_mark_all:'Marcar todas como leídas',
+  notif_all:'Todas',notif_loading:'Cargando notificaciones...',notif_ago:'hace',
+  // Attendance
+  att_title:'Asistencia',att_none:'Sin registros de asistencia.',
+  att_present:'Presente',att_absent:'Ausente',att_late:'Tarde',
+  att_early:'Salida Temprana',att_excused:'Justificado',
+  att_in:'Entrada',att_out:'Salida',att_notes:'Notas',att_save:'Guardar',
+  att_daily:'Diario',att_weekly:'Semanal',att_monthly:'Mensual',
+  att_stats:'Estadísticas',att_total:'Total de Días',att_rate:'Tasa de Asistencia',
+  att_filter_date:'Filtrar por Fecha',att_classroom:'Salón',att_mark:'Marcar Asistencia',
+  att_bulk_save:'Guardar Todo',att_child:'Niño',att_status:'Estado',att_date:'Fecha',
+  // Shared
+  no_server:'Conexión al servidor requerida. Inicie sesión con su cuenta real.',
+  loading:'Cargando...',err_load:'Error al cargar datos. Intente de nuevo.',
+  // Forgot/Reset password
+  pw_forgot:'¿Olvidó su Contraseña?',pw_reset_title:'Restablecer Contraseña',
+  pw_reset_user:'Nombre de Usuario',pw_reset_code:'Código de Restablecimiento',
+  pw_reset_new:'Nueva Contraseña',pw_reset_btn:'Restablecer',pw_reset_back:'Volver al Inicio de Sesión',
+  pw_reset_sent:'Si la cuenta existe, se generó un código. Contacte al administrador para obtenerlo.',
+  pw_request_btn:'Solicitar Código'
 };
 const I18N_EN = {};
 document.querySelectorAll('[data-i18n]').forEach(el => { I18N_EN[el.dataset.i18n] = el.innerHTML; });
@@ -260,6 +306,26 @@ function applyLang() {
   document.documentElement.lang = LANG;
 }
 function toggleLang() { LANG = LANG === 'es' ? 'en' : 'es'; applyLang(); renderPortal(); renderEnrollment(); }
+
+/* ---------- API helpers ---------- */
+let _NOTIF_UNREAD = null;
+let _SSE_SOURCE = null;
+function apiToken() { return localStorage.getItem('ms_token') || ''; }
+function apiFetch(url, opts) {
+  opts = opts || {};
+  const tk = apiToken();
+  opts.headers = Object.assign({'Content-Type':'application/json'}, tk ? {Authorization:'Bearer '+tk} : {}, opts.headers || {});
+  return fetch(url, opts);
+}
+function loadingCard() {
+  return `<div class="card"><p class="soft" style="text-align:center;padding:20px">&#9203; ${t('Loading...','Cargando...')}</p></div>`;
+}
+function errCard() {
+  return `<div class="card"><p class="soft" style="text-align:center;padding:20px;color:var(--coral)">&#9888; ${t('Error loading data. Try again.','Error al cargar datos. Intente de nuevo.')}</p></div>`;
+}
+function noTokenCard() {
+  return `<div class="card"><p class="soft" style="text-align:center;padding:20px">&#128274; ${t('Server connection required. Log in with your real account to use this feature.','Conexion al servidor requerida. Inicie sesion con su cuenta real para usar esta funcion.')}</p></div>`;
+}
 
 /* ---------- helpers ---------- */
 function esc(s) {
@@ -439,6 +505,7 @@ function renderPortal() {
 
 /* ---------- auth view ---------- */
 function authView() {
+  if (_FORGOT_STEP > 0) return forgotPasswordView();
   return `
   <div class="demo-banner">
     <b>${t('Demo Accounts','Cuentas de Demostración')}</b><br>
@@ -458,6 +525,7 @@ function authView() {
       <div class="field"><label>${t('Username','Usuario')}</label><input id="li-user" autocomplete="username" placeholder="admin"></div>
       <div class="field"><label>${t('Password','Contrasena')}</label><input id="li-pass" type="password" autocomplete="current-password" placeholder="admin123"></div>
       <button class="btn btn-night btn-full" onclick="login()">${t('Sign In','Iniciar Sesion')}</button>
+      <p style="text-align:center;margin-top:10px"><button class="mini-btn ghost" style="font-size:.82rem" onclick="showForgotPassword()">&#128273; ${t('Forgot Password?','¿Olvidé mi Contraseña?')}</button></p>
     ` : `
       <div class="field"><label>${t('Your full name','Su nombre completo')}</label><input id="su-name" placeholder="${t('e.g. Maria Gonzalez','Ej.: Maria Gonzalez')}"></div>
       <div class="field"><label>${t('Choose a username','Elija un usuario')}</label><input id="su-user"></div>
@@ -478,10 +546,15 @@ function login() {
   CU = found;
   SUB = CU.role === 'admin' ? 'overview' : (CU.role === 'teacher' ? 'class' : 'children');
   PARENT_CHILD = '';
+  // Try API login silently to get JWT token for server features
+  fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})})
+    .then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.token){localStorage.setItem('ms_token',d.token);_NOTIF_UNREAD=null;_initSSE();renderPortal();}
+    }).catch(()=>{});
   renderPortal();
 }
 
-function logout() { CU = null; AUTH_TAB = 'login'; SUB = 'overview'; renderPortal(); }
+function logout() { CU = null; AUTH_TAB = 'login'; SUB = 'overview'; localStorage.removeItem('ms_token'); _NOTIF_UNREAD=null; if(_SSE_SOURCE){_SSE_SOURCE.close();_SSE_SOURCE=null;} renderPortal(); }
 
 function signupParent() {
   const name = (document.getElementById('su-name').value || '').trim();
@@ -516,7 +589,12 @@ function adminView() {
     ['parents',     '&#128106; ' + t('Parents','Padres')],
     ['reports',     '&#128203; ' + t('Reports','Reportes')],
     ['messages',    '&#128172; ' + t('Messages','Mensajes')],
-    ['curriculum',  '&#127963; ' + t('Curriculum','Curriculo')]
+    ['curriculum',  '&#127963; ' + t('Curriculum','Curriculo')],
+    ['incidents',   '&#128680; ' + t('Incidents','Incidentes')],
+    ['medications', '&#128138; ' + t('Medications','Medicamentos')],
+    ['attendance',  '&#9989; '   + t('Attendance','Asistencia')],
+    ['calendar',    '&#128197; ' + t('Calendar','Calendario')],
+    ['notifications','&#128276; ' + t('Notifications','Notificaciones') + (_NOTIF_UNREAD ? ` <span style="background:var(--coral);color:#fff;border-radius:999px;font-size:.65rem;padding:1px 7px;margin-left:2px">${_NOTIF_UNREAD}</span>` : '')]
   ]);
 
   /* --- overview --- */
@@ -676,6 +754,13 @@ function adminView() {
     }
   }
 
+  /* --- new API modules --- */
+  if (SUB === 'incidents')     { h += typeof incidentsView    === 'function' ? incidentsView()    : loadingCard(); }
+  if (SUB === 'medications')   { h += typeof medicationsView  === 'function' ? medicationsView()  : loadingCard(); }
+  if (SUB === 'attendance')    { h += typeof attendanceView   === 'function' ? attendanceView()   : loadingCard(); }
+  if (SUB === 'calendar')      { h += typeof calendarView     === 'function' ? calendarView()     : loadingCard(); }
+  if (SUB === 'notifications') { h += typeof notificationsView=== 'function' ? notificationsView(): loadingCard(); }
+
   return h;
 }
 
@@ -683,11 +768,16 @@ function adminView() {
 function teacherView() {
   let h = `<p class="soft" style="margin-bottom:2px">${t('Classroom:','Salon:')} <b style="color:var(--night)">${esc(clsName(CU.classId))}</b></p>`;
   h += subtabs([
-    ['class',      '&#127979; ' + t('My Class','Mi Salon')],
-    ['report',     '&#128221; ' + t('Daily Report','Reporte Diario')],
-    ['history',    '&#128193; ' + t('History','Historial')],
-    ['messages',   '&#128172; ' + t('Messages','Mensajes')],
-    ['curriculum', '&#127963; ' + t('Curriculum','Curriculo')]
+    ['class',        '&#127979; ' + t('My Class','Mi Salon')],
+    ['report',       '&#128221; ' + t('Daily Report','Reporte Diario')],
+    ['history',      '&#128193; ' + t('History','Historial')],
+    ['messages',     '&#128172; ' + t('Messages','Mensajes')],
+    ['curriculum',   '&#127963; ' + t('Curriculum','Curriculo')],
+    ['incidents',    '&#128680; ' + t('Incidents','Incidentes')],
+    ['medications',  '&#128138; ' + t('Medications','Medicamentos')],
+    ['attendance',   '&#9989; '   + t('Attendance','Asistencia')],
+    ['calendar',     '&#128197; ' + t('Calendar','Calendario')],
+    ['notifications','&#128276; ' + t('Notifications','Notificaciones') + (_NOTIF_UNREAD ? ` <span style="background:var(--coral);color:#fff;border-radius:999px;font-size:.65rem;padding:1px 7px;margin-left:2px">${_NOTIF_UNREAD}</span>` : '')]
   ]);
   const kids = DB.children.filter(c => c.classId === CU.classId);
 
@@ -841,6 +931,13 @@ function teacherView() {
     }
   }
 
+  /* new API modules */
+  if (SUB === 'incidents')     { h += typeof incidentsView    === 'function' ? incidentsView()    : loadingCard(); }
+  if (SUB === 'medications')   { h += typeof medicationsView  === 'function' ? medicationsView()  : loadingCard(); }
+  if (SUB === 'attendance')    { h += typeof attendanceView   === 'function' ? attendanceView()   : loadingCard(); }
+  if (SUB === 'calendar')      { h += typeof calendarView     === 'function' ? calendarView()     : loadingCard(); }
+  if (SUB === 'notifications') { h += typeof notificationsView=== 'function' ? notificationsView(): loadingCard(); }
+
   return h;
 }
 
@@ -853,10 +950,15 @@ function _fillReportActivities(text) {
 function parentView() {
   const kids = parentChildren(CU);
   let h = subtabs([
-    ['children',   '&#128118; ' + t('My Children','Mis Hijos')],
-    ['reports',    '&#128203; ' + t('Daily Reports','Reportes Diarios')],
-    ['messages',   '&#128172; ' + t('Messages','Mensajes')],
-    ['curriculum', '&#127963; ' + t('Learning','Aprendizaje')]
+    ['children',     '&#128118; ' + t('My Children','Mis Hijos')],
+    ['reports',      '&#128203; ' + t('Daily Reports','Reportes Diarios')],
+    ['messages',     '&#128172; ' + t('Messages','Mensajes')],
+    ['curriculum',   '&#127963; ' + t('Learning','Aprendizaje')],
+    ['incidents',    '&#128680; ' + t('Incidents','Incidentes')],
+    ['medications',  '&#128138; ' + t('Medications','Medicamentos')],
+    ['attendance',   '&#9989; '   + t('Attendance','Asistencia')],
+    ['calendar',     '&#128197; ' + t('Calendar','Calendario')],
+    ['notifications','&#128276; ' + t('Notifications','Notificaciones') + (_NOTIF_UNREAD ? ` <span style="background:var(--coral);color:#fff;border-radius:999px;font-size:.65rem;padding:1px 7px;margin-left:2px">${_NOTIF_UNREAD}</span>` : '')]
   ]);
 
   if (!kids.length && SUB !== 'messages') {
@@ -947,6 +1049,13 @@ function parentView() {
       h += `<div class="empty">${t('Learning system loading...','Cargando el Sistema de Aprendizaje...')}</div>`;
     }
   }
+
+  /* new API modules */
+  if (SUB === 'incidents')     { h += typeof incidentsView    === 'function' ? incidentsView()    : loadingCard(); }
+  if (SUB === 'medications')   { h += typeof medicationsView  === 'function' ? medicationsView()  : loadingCard(); }
+  if (SUB === 'attendance')    { h += typeof attendanceView   === 'function' ? attendanceView()   : loadingCard(); }
+  if (SUB === 'calendar')      { h += typeof calendarView     === 'function' ? calendarView()     : loadingCard(); }
+  if (SUB === 'notifications') { h += typeof notificationsView=== 'function' ? notificationsView(): loadingCard(); }
 
   return h;
 }
@@ -1702,6 +1811,70 @@ function changePassword() {
   alert(t('Password changed successfully!', 'Contrasena cambiada exitosamente!'));
 }
 
+/* ---------- forgot / reset password ---------- */
+let _FORGOT_STEP = 0; // 0=login, 1=request code, 2=enter code+new pass
+let _FORGOT_USER = '';
+
+function showForgotPassword() { _FORGOT_STEP = 1; renderPortal(); }
+function backToLogin() { _FORGOT_STEP = 0; _FORGOT_USER = ''; renderPortal(); }
+
+function forgotPasswordView() {
+  if (_FORGOT_STEP === 1) {
+    return `<div class="portal-card">
+      <h2 style="text-align:center;font-size:1.3rem">&#128273; ${t('Forgot Password','Olvidé mi Contraseña')}</h2>
+      <p class="soft" style="text-align:center;font-size:.9rem">${t('Enter your username to request a reset code.','Ingrese su usuario para solicitar un código de restablecimiento.')}</p>
+      <div class="field"><label>${t('Username','Usuario')}</label><input id="fp-user" placeholder="admin"></div>
+      <button class="btn btn-night btn-full" onclick="requestResetCode()">${t('Request Code','Solicitar Código')}</button>
+      <div class="form-msg" id="fp-msg"></div>
+      <p style="text-align:center;margin-top:14px"><button class="mini-btn ghost" onclick="backToLogin()">&#8592; ${t('Back to Sign In','Volver al Inicio de Sesión')}</button></p>
+    </div>`;
+  }
+  if (_FORGOT_STEP === 2) {
+    return `<div class="portal-card">
+      <h2 style="text-align:center;font-size:1.3rem">&#128273; ${t('Reset Password','Restablecer Contraseña')}</h2>
+      <p class="soft" style="text-align:center;font-size:.9rem">${t('Enter the reset code and your new password.','Ingrese el código y su nueva contraseña.')}</p>
+      <div class="field"><label>${t('Reset Code','Código de Restablecimiento')}</label><input id="fp-code" placeholder="123456"></div>
+      <div class="field"><label>${t('New Password (min 6 chars)','Nueva Contraseña (mín 6 chars)')}</label><input id="fp-newpass" type="password"></div>
+      <button class="btn btn-teal btn-full" onclick="doResetPassword()">${t('Reset Password','Restablecer Contraseña')}</button>
+      <div class="form-msg" id="fp-msg2"></div>
+      <p style="text-align:center;margin-top:14px"><button class="mini-btn ghost" onclick="backToLogin()">&#8592; ${t('Back to Sign In','Volver al Inicio de Sesión')}</button></p>
+    </div>`;
+  }
+  return '';
+}
+
+function requestResetCode() {
+  const un = (document.getElementById('fp-user').value || '').trim();
+  if (!un) { msg('fp-msg', t('Enter your username.','Ingrese su usuario.')); return; }
+  _FORGOT_USER = un;
+  fetch('/api/auth/forgot-password', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:un})})
+    .then(r=>r.json()).then(d=>{
+      if(d.ok||d.message){
+        _FORGOT_STEP = 2;
+        msg('fp-msg', t('Code generated. Ask your admin for the code.','Código generado. Pida al administrador el código.'), true);
+        setTimeout(()=>renderPortal(), 1500);
+      } else {
+        msg('fp-msg', d.error || t('User not found.','Usuario no encontrado.'));
+      }
+    }).catch(()=>msg('fp-msg', t('Server unavailable.','Servidor no disponible.')));
+}
+
+function doResetPassword() {
+  const code = (document.getElementById('fp-code').value || '').trim();
+  const np = document.getElementById('fp-newpass').value;
+  if (!code || !np) { msg('fp-msg2', t('Fill in all fields.','Complete todos los campos.')); return; }
+  if (np.length < 6) { msg('fp-msg2', t('Password must be at least 6 characters.','La contraseña debe tener al menos 6 caracteres.')); return; }
+  fetch('/api/auth/reset-password', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:_FORGOT_USER,code,new_password:np})})
+    .then(r=>r.json()).then(d=>{
+      if(d.ok){
+        msg('fp-msg2', t('Password reset! You can now sign in.','Contraseña restablecida. Puede iniciar sesión ahora.'), true);
+        setTimeout(()=>{ _FORGOT_STEP=0; _FORGOT_USER=''; renderPortal(); }, 2000);
+      } else {
+        msg('fp-msg2', d.error || t('Invalid or expired code.','Código inválido o expirado.'));
+      }
+    }).catch(()=>msg('fp-msg2', t('Server unavailable.','Servidor no disponible.')));
+}
+
 /* ---------- init ---------- */
 loadDB();
 if (typeof initCurriculumDB === 'function') initCurriculumDB();
@@ -1710,3 +1883,27 @@ document.querySelectorAll('[data-page="portal"]').forEach(b => b.addEventListene
 document.querySelectorAll('[data-page="enrollment"]').forEach(b => b.addEventListener('click', () => setTimeout(renderEnrollment, 0)));
 renderPortal();
 renderEnrollment();
+
+// Poll notification count every 60 seconds when logged in with API token
+setInterval(() => {
+  if (!CU || !apiToken()) return;
+  apiFetch('/api/notifications/unread-count').then(r=>r.ok?r.json():null).then(d=>{
+    if(d&&typeof d.count==='number'&&d.count!==_NOTIF_UNREAD){_NOTIF_UNREAD=d.count;renderPortal();}
+  }).catch(()=>{});
+}, 60000);
+
+// SSE — real-time push from server (connects once user has a token)
+function _initSSE() {
+  const tk = apiToken();
+  if (!tk || _SSE_SOURCE) return;
+  try {
+    _SSE_SOURCE = new EventSource('/api/sse?token=' + encodeURIComponent(tk));
+    _SSE_SOURCE.onmessage = (e) => {
+      try {
+        const d = JSON.parse(e.data);
+        if (d.type === 'notification') { _NOTIF_UNREAD = null; _NOTIF = null; renderPortal(); }
+      } catch {}
+    };
+    _SSE_SOURCE.onerror = () => { _SSE_SOURCE && _SSE_SOURCE.close(); _SSE_SOURCE = null; };
+  } catch {}
+}

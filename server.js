@@ -52,6 +52,78 @@ app.post('/api/auth/login', async (req, res) => {
   } catch (e) { console.error(e); res.status(500).json({ error: 'Server error' }) }
 })
 
+// ── Change password (authenticated user changes own password) ──
+app.post('/api/auth/change-password', auth, async (req, res) => {
+  const { current_password, new_password } = req.body
+  if (!current_password || !new_password) return res.status(400).json({ error: 'Missing fields' })
+  if (new_password.length < 6) return res.status(400).json({ error: 'Password too short' })
+  try {
+    const { rows } = await pool.query('SELECT password_hash FROM users WHERE id=$1', [req.user.id])
+    if (!rows[0]) return res.status(404).json({ error: 'User not found' })
+    const ok = await bcrypt.compare(current_password, rows[0].password_hash)
+    if (!ok) return res.status(401).json({ error: 'Current password is incorrect' })
+    const hash = await bcrypt.hash(new_password, 10)
+    await pool.query('UPDATE users SET password_hash=$1 WHERE id=$2', [hash, req.user.id])
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: 'Server error' }) }
+})
+
+// ── Forgot / reset password (code stored in memory, 15 min TTL) ──
+const _resetCodes = new Map() // username -> { code, expires }
+app.post('/api/auth/forgot-password', async (req, res) => {
+  const { username } = req.body
+  if (!username) return res.status(400).json({ error: 'Username required' })
+  try {
+    const { rows } = await pool.query('SELECT id FROM users WHERE lower(username)=lower($1)', [username])
+    if (!rows[0]) return res.json({ ok: true, message: 'If the account exists, a code was generated.' })
+    const code = String(Math.floor(100000 + Math.random() * 900000))
+    _resetCodes.set(username.toLowerCase(), { code, expires: Date.now() + 15 * 60 * 1000 })
+    console.log('[RESET] Code for', username, ':', code) // In production, email this
+    res.json({ ok: true, message: 'Reset code generated. Check server logs or contact admin.' })
+  } catch (e) { res.status(500).json({ error: 'Server error' }) }
+})
+
+app.post('/api/auth/reset-password', async (req, res) => {
+  const { username, code, new_password } = req.body
+  if (!username || !code || !new_password) return res.status(400).json({ error: 'Missing fields' })
+  if (new_password.length < 6) return res.status(400).json({ error: 'Password too short' })
+  const entry = _resetCodes.get(username.toLowerCase())
+  if (!entry || entry.code !== code || Date.now() > entry.expires) {
+    return res.status(400).json({ error: 'Invalid or expired code' })
+  }
+  try {
+    const hash = await bcrypt.hash(new_password, 10)
+    const { rowCount } = await pool.query('UPDATE users SET password_hash=$1 WHERE lower(username)=lower($2)', [hash, username])
+    if (!rowCount) return res.status(404).json({ error: 'User not found' })
+    _resetCodes.delete(username.toLowerCase())
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: 'Server error' }) }
+})
+
+// ── SSE (real-time push for notifications) ───────────────────
+const _sseClients = new Map() // userId -> res
+app.get('/api/sse', async (req, res) => {
+  const token = req.headers.authorization?.slice(7) || req.query.token
+  if (!token) return res.status(401).end()
+  let user
+  try { user = require('jsonwebtoken').verify(token, JWT_SECRET) } catch { return res.status(401).end() }
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Connection', 'keep-alive')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.flushHeaders()
+  _sseClients.set(user.id, res)
+  res.write('data: {"type":"connected"}\n\n')
+  const hb = setInterval(() => { try { res.write('data: {"type":"ping"}\n\n') } catch { clearInterval(hb) } }, 25000)
+  req.on('close', () => { clearInterval(hb); _sseClients.delete(user.id) })
+})
+
+// Helper: push SSE notification to a specific user (call after creating a notification)
+function _pushSSE(userId, payload) {
+  const client = _sseClients.get(userId)
+  if (client) { try { client.write('data: ' + JSON.stringify(payload) + '\n\n') } catch { _sseClients.delete(userId) } }
+}
+
 app.get('/api/auth/me', auth, async (req, res) => {
   try {
     const { rows } = await pool.query(
