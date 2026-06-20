@@ -475,7 +475,7 @@ function adminView() {
     if (typeof curriculumPortalView === 'function') {
       h += curriculumPortalView();
     } else {
-      h += `<div class="empty">Curriculum system loading...</div>`;
+      h += `<div class="empty">${t('Curriculum system loading...','Cargando el Currículo...')}</div>`;
     }
   }
 
@@ -747,7 +747,7 @@ function parentView() {
     if (typeof curriculumPortalView === 'function') {
       h += curriculumPortalView();
     } else {
-      h += `<div class="empty">Learning system loading...</div>`;
+      h += `<div class="empty">${t('Learning system loading...','Cargando el Sistema de Aprendizaje...')}</div>`;
     }
   }
 

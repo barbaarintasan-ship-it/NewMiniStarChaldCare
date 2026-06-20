@@ -180,59 +180,65 @@ const ENT_PATHWAY = [
    ══════════════════════════════════════════════ */
 const FL_DOMAINS = [
   {
-    id: 'saving', label: 'Saving', icon: '&#128180;', color: '#4A9E4A',
+    id: 'saving', _lbl: 'Saving', _lbl_es: 'Ahorro', icon: '&#128180;', color: '#4A9E4A',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Awareness', desc: 'Knows a piggy bank holds money', age: '3–4' },
-      { level: 2, label: 'Practice', desc: 'Puts coins in savings container regularly', age: '4–6' },
-      { level: 3, label: 'Goal Setting', desc: 'Saves toward a specific item for 1–2 weeks', age: '6–8' },
-      { level: 4, label: 'Strategy', desc: 'Divides income: save, spend, give', age: '8–10' },
-      { level: 5, label: 'Growth', desc: 'Understands interest and compound growth', age: '10–12' }
+      { level: 1, label: 'Awareness',    _lbl_es: 'Conciencia',          desc: 'Knows a piggy bank holds money', age: '3–4' },
+      { level: 2, label: 'Practice',     _lbl_es: 'Práctica',            desc: 'Puts coins in savings container regularly', age: '4–6' },
+      { level: 3, label: 'Goal Setting', _lbl_es: 'Establecer Metas',    desc: 'Saves toward a specific item for 1–2 weeks', age: '6–8' },
+      { level: 4, label: 'Strategy',     _lbl_es: 'Estrategia',          desc: 'Divides income: save, spend, give', age: '8–10' },
+      { level: 5, label: 'Growth',       _lbl_es: 'Crecimiento',         desc: 'Understands interest and compound growth', age: '10–12' }
     ]
   },
   {
-    id: 'spending', label: 'Smart Spending', icon: '&#128722;', color: '#E86B6B',
+    id: 'spending', _lbl: 'Smart Spending', _lbl_es: 'Gasto Inteligente', icon: '&#128722;', color: '#E86B6B',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Recognition', desc: 'Knows stores exchange money for goods', age: '3–4' },
-      { level: 2, label: 'Choice', desc: 'Chooses between two items within a budget', age: '4–6' },
-      { level: 3, label: 'Comparison', desc: 'Compares prices of similar products', age: '6–8' },
-      { level: 4, label: 'Value Analysis', desc: 'Evaluates quality vs. price', age: '8–10' },
-      { level: 5, label: 'Research', desc: 'Researches best prices and reads reviews', age: '10–12' }
+      { level: 1, label: 'Recognition',    _lbl_es: 'Reconocimiento',   desc: 'Knows stores exchange money for goods', age: '3–4' },
+      { level: 2, label: 'Choice',         _lbl_es: 'Elección',         desc: 'Chooses between two items within a budget', age: '4–6' },
+      { level: 3, label: 'Comparison',     _lbl_es: 'Comparación',      desc: 'Compares prices of similar products', age: '6–8' },
+      { level: 4, label: 'Value Analysis', _lbl_es: 'Análisis de Valor', desc: 'Evaluates quality vs. price', age: '8–10' },
+      { level: 5, label: 'Research',       _lbl_es: 'Investigación',    desc: 'Researches best prices and reads reviews', age: '10–12' }
     ]
   },
   {
-    id: 'needs_wants', label: 'Needs vs. Wants', icon: '&#9878;', color: '#C8960A',
+    id: 'needs_wants', _lbl: 'Needs vs. Wants', _lbl_es: 'Necesidades vs. Deseos', icon: '&#9878;', color: '#C8960A',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Awareness', desc: 'Can name examples of food, shelter (needs)', age: '3–5' },
-      { level: 2, label: 'Sorting', desc: 'Sorts items into needs/wants categories', age: '5–7' },
-      { level: 3, label: 'Tradeoffs', desc: 'Understands choosing a want means sacrificing another', age: '7–9' },
-      { level: 4, label: 'Planning', desc: 'Prioritizes spending: needs first, wants second', age: '9–12' }
+      { level: 1, label: 'Awareness',  _lbl_es: 'Conciencia',        desc: 'Can name examples of food, shelter (needs)', age: '3–5' },
+      { level: 2, label: 'Sorting',    _lbl_es: 'Clasificación',     desc: 'Sorts items into needs/wants categories', age: '5–7' },
+      { level: 3, label: 'Tradeoffs',  _lbl_es: 'Compensaciones',    desc: 'Understands choosing a want means sacrificing another', age: '7–9' },
+      { level: 4, label: 'Planning',   _lbl_es: 'Planificación',     desc: 'Prioritizes spending: needs first, wants second', age: '9–12' }
     ]
   },
   {
-    id: 'earning', label: 'Earning Money', icon: '&#128184;', color: '#2ABFB8',
+    id: 'earning', _lbl: 'Earning Money', _lbl_es: 'Ganar Dinero', icon: '&#128184;', color: '#2ABFB8',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Awareness', desc: 'Knows adults earn money by working', age: '3–5' },
-      { level: 2, label: 'Chores', desc: 'Earns allowance through completing tasks', age: '5–7' },
-      { level: 3, label: 'Service', desc: 'Earns money outside home (helping neighbors)', age: '7–9' },
-      { level: 4, label: 'Business', desc: 'Creates and runs a micro-business', age: '9–12' }
+      { level: 1, label: 'Awareness', _lbl_es: 'Conciencia',          desc: 'Knows adults earn money by working', age: '3–5' },
+      { level: 2, label: 'Chores',    _lbl_es: 'Tareas del Hogar',    desc: 'Earns allowance through completing tasks', age: '5–7' },
+      { level: 3, label: 'Service',   _lbl_es: 'Servicio',            desc: 'Earns money outside home (helping neighbors)', age: '7–9' },
+      { level: 4, label: 'Business',  _lbl_es: 'Negocio',             desc: 'Creates and runs a micro-business', age: '9–12' }
     ]
   },
   {
-    id: 'delayed_gratification', label: 'Delayed Gratification', icon: '&#9203;', color: '#8B4AB8',
+    id: 'delayed_gratification', _lbl: 'Delayed Gratification', _lbl_es: 'Gratificación Diferida', icon: '&#9203;', color: '#8B4AB8',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Waiting', desc: 'Waits for a treat without distress', age: '3–5' },
-      { level: 2, label: 'Saving for Goals', desc: 'Saves up for a desired item over days', age: '5–7' },
-      { level: 3, label: 'Long-Term Thinking', desc: 'Plans and saves over weeks for a bigger goal', age: '7–9' },
-      { level: 4, label: 'Investment Mindset', desc: 'Understands waiting makes money grow (interest)', age: '9–12' }
+      { level: 1, label: 'Waiting',              _lbl_es: 'Espera',                      desc: 'Waits for a treat without distress', age: '3–5' },
+      { level: 2, label: 'Saving for Goals',     _lbl_es: 'Ahorro para Metas',           desc: 'Saves up for a desired item over days', age: '5–7' },
+      { level: 3, label: 'Long-Term Thinking',   _lbl_es: 'Pensamiento a Largo Plazo',   desc: 'Plans and saves over weeks for a bigger goal', age: '7–9' },
+      { level: 4, label: 'Investment Mindset',   _lbl_es: 'Mentalidad de Inversión',     desc: 'Understands waiting makes money grow (interest)', age: '9–12' }
     ]
   },
   {
-    id: 'value_creation', label: 'Creating Value', icon: '&#10024;', color: '#B87828',
+    id: 'value_creation', _lbl: 'Creating Value', _lbl_es: 'Crear Valor', icon: '&#10024;', color: '#B87828',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     milestones: [
-      { level: 1, label: 'Making', desc: 'Creates something to give to others (art, craft)', age: '3–5' },
-      { level: 2, label: 'Service', desc: 'Performs a service that helps someone', age: '5–7' },
-      { level: 3, label: 'Product', desc: 'Makes a product others want to buy', age: '7–9' },
-      { level: 4, label: 'Innovation', desc: 'Solves a problem others haven\'t solved yet', age: '9–12' }
+      { level: 1, label: 'Making',     _lbl_es: 'Crear',       desc: 'Creates something to give to others (art, craft)', age: '3–5' },
+      { level: 2, label: 'Service',    _lbl_es: 'Servicio',    desc: 'Performs a service that helps someone', age: '5–7' },
+      { level: 3, label: 'Product',    _lbl_es: 'Producto',    desc: 'Makes a product others want to buy', age: '7–9' },
+      { level: 4, label: 'Innovation', _lbl_es: 'Innovación',  desc: 'Solves a problem others haven\'t solved yet', age: '9–12' }
     ]
   }
 ];
@@ -242,8 +248,11 @@ const FL_DOMAINS = [
    ══════════════════════════════════════════════ */
 const LEADERSHIP_MODULES = [
   {
-    id: 'responsibility', label: 'Responsibility', icon: '&#9989;', color: '#4A9E4A',
+    id: 'responsibility', _lbl: 'Responsibility', _lbl_es: 'Responsabilidad', icon: '&#9989;', color: '#4A9E4A',
     desc: 'Owning your actions and following through on commitments.',
+    _desc_es: 'Hacerse responsable de tus acciones y cumplir tus compromisos.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Signals needs clearly'],
       toddlers:   ['Puts toys away when asked', 'Washes hands without reminder'],
@@ -252,8 +261,11 @@ const LEADERSHIP_MODULES = [
     }
   },
   {
-    id: 'initiative', label: 'Initiative', icon: '&#128161;', color: '#C8960A',
+    id: 'initiative', _lbl: 'Initiative', _lbl_es: 'Iniciativa', icon: '&#128161;', color: '#C8960A',
     desc: 'Starting tasks and projects without being told.',
+    _desc_es: 'Comenzar tareas y proyectos sin que te lo digan.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Reaches for desired objects proactively'],
       toddlers:   ['Starts clean-up before being asked', 'Chooses activities independently'],
@@ -262,8 +274,11 @@ const LEADERSHIP_MODULES = [
     }
   },
   {
-    id: 'teamwork', label: 'Teamwork', icon: '&#129309;', color: '#2ABFB8',
+    id: 'teamwork', _lbl: 'Teamwork', _lbl_es: 'Trabajo en Equipo', icon: '&#129309;', color: '#2ABFB8',
     desc: 'Collaborating effectively to achieve shared goals.',
+    _desc_es: 'Colaborar eficazmente para alcanzar metas comunes.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Engages in simple social games (peek-a-boo)'],
       toddlers:   ['Plays near others cooperatively', 'Shares materials with guidance'],
@@ -272,8 +287,11 @@ const LEADERSHIP_MODULES = [
     }
   },
   {
-    id: 'communication', label: 'Communication', icon: '&#128172;', color: '#4A8BC4',
+    id: 'communication', _lbl: 'Communication', _lbl_es: 'Comunicación', icon: '&#128172;', color: '#4A8BC4',
     desc: 'Expressing ideas clearly and listening actively.',
+    _desc_es: 'Expresar ideas claramente y escuchar activamente.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Uses facial expressions and gestures to communicate'],
       toddlers:   ['Uses words instead of crying to express needs', 'Listens during story time'],
@@ -282,8 +300,11 @@ const LEADERSHIP_MODULES = [
     }
   },
   {
-    id: 'decision_making', label: 'Decision Making', icon: '&#129504;', color: '#8B4AB8',
+    id: 'decision_making', _lbl: 'Decision Making', _lbl_es: 'Toma de Decisiones', icon: '&#129504;', color: '#8B4AB8',
     desc: 'Evaluating options and making thoughtful choices.',
+    _desc_es: 'Evaluar opciones y tomar decisiones reflexivas.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Chooses between two objects when offered'],
       toddlers:   ['Makes simple choices (this or that)', 'Understands some choices have consequences'],
@@ -292,8 +313,11 @@ const LEADERSHIP_MODULES = [
     }
   },
   {
-    id: 'problem_solving', label: 'Problem Solving', icon: '&#128736;', color: '#E86B6B',
+    id: 'problem_solving', _lbl: 'Problem Solving', _lbl_es: 'Resolución de Problemas', icon: '&#128736;', color: '#E86B6B',
     desc: 'Identifying problems and generating effective solutions.',
+    _desc_es: 'Identificar problemas y generar soluciones efectivas.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; },
     indicators: {
       infants:    ['Finds objects hidden under a cloth', 'Works around obstacles to reach goal'],
       toddlers:   ['Tries multiple approaches to a puzzle', 'Asks for help when stuck'],
@@ -307,12 +331,24 @@ const LEADERSHIP_MODULES = [
    SECTION 6 — CRITICAL THINKING ENGINE
    ══════════════════════════════════════════════ */
 const CT_PHASES = [
-  { id: 'question',    label: 'Ask the Question',      icon: '&#10067;', color: '#2ABFB8', prompt: 'What do we want to find out? What is the problem we are solving?' },
-  { id: 'evidence',   label: 'Gather Evidence',        icon: '&#128270;', color: '#4A8BC4', prompt: 'What information do we have? What do we observe? What sources can we use?' },
-  { id: 'reasoning',  label: 'Reason It Through',      icon: '&#129504;', color: '#8B4AB8', prompt: 'What do the facts tell us? How do the pieces connect? What patterns do we see?' },
-  { id: 'assumptions',label: 'Check Assumptions',      icon: '&#9888;',  color: '#C8960A', prompt: 'What are we assuming? Could we be wrong? Are our sources trustworthy?' },
-  { id: 'alternatives','label': 'Consider Alternatives', icon: '&#128260;', color: '#E86B6B', prompt: 'What other explanations exist? What would happen if we tried a different approach?' },
-  { id: 'decision',   label: 'Make a Decision',        icon: '&#9989;',  color: '#4A9E4A', prompt: 'What is our best conclusion based on the evidence? What will we do next?' }
+  { id: 'question',     _lbl: 'Ask the Question',       _lbl_es: 'Hacer la Pregunta',        icon: '&#10067;',  color: '#2ABFB8',
+    prompt: 'What do we want to find out? What is the problem we are solving?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'evidence',     _lbl: 'Gather Evidence',         _lbl_es: 'Reunir Evidencia',          icon: '&#128270;', color: '#4A8BC4',
+    prompt: 'What information do we have? What do we observe? What sources can we use?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'reasoning',    _lbl: 'Reason It Through',       _lbl_es: 'Razonar',                   icon: '&#129504;', color: '#8B4AB8',
+    prompt: 'What do the facts tell us? How do the pieces connect? What patterns do we see?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'assumptions',  _lbl: 'Check Assumptions',       _lbl_es: 'Verificar Suposiciones',    icon: '&#9888;',   color: '#C8960A',
+    prompt: 'What are we assuming? Could we be wrong? Are our sources trustworthy?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'alternatives', _lbl: 'Consider Alternatives',   _lbl_es: 'Considerar Alternativas',   icon: '&#128260;', color: '#E86B6B',
+    prompt: 'What other explanations exist? What would happen if we tried a different approach?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'decision',     _lbl: 'Make a Decision',         _lbl_es: 'Tomar una Decisión',        icon: '&#9989;',   color: '#4A9E4A',
+    prompt: 'What is our best conclusion based on the evidence? What will we do next?',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } }
 ];
 
 const CT_TEMPLATES = {
@@ -620,7 +656,7 @@ function flTeacherView() {
       <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
         ${domain.milestones.map((m,i) => `<button onclick="saveFLMilestone('${child.id}','${domain.id}',${i+1})"
           style="padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:700;cursor:pointer;border:2px solid ${domain.color};background:${currentLevel>i?domain.color:'#fff'};color:${currentLevel>i?'#fff':domain.color}">
-          ${i+1}. ${esc(m.label)}
+          ${i+1}. ${esc(typeof LANG!=='undefined'&&LANG==='es'?(m._lbl_es||m.label):m.label)}
         </button>`).join('')}
       </div>
       ${currentLevel > 0 ? `<div style="padding:8px;background:#F8F8F8;border-radius:8px;font-size:.82rem">
@@ -672,7 +708,7 @@ function leadershipTeacherView() {
           </button>`).join('')}
         </span>
       </div>
-      <p style="font-size:.8rem;color:var(--muted);margin:0 0 6px;font-style:italic">${esc(mod.desc)}</p>
+      <p style="font-size:.8rem;color:var(--muted);margin:0 0 6px;font-style:italic">${esc(mod.desc_l||mod.desc)}</p>
       ${indicators.length ? `<div style="background:#F8F8F8;padding:8px;border-radius:8px">
         <p style="font-size:.75rem;font-weight:700;color:var(--night);margin:0 0 4px">${t('Age-specific indicators:','Indicadores por edad:')}</p>
         <ul style="margin:0 0 0 14px;padding:0">${indicators.map(i=>`<li style="font-size:.78rem;margin-bottom:2px">${esc(i)}</li>`).join('')}</ul>

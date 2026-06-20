@@ -16,21 +16,37 @@ const CLS_TO_AGE = {
 };
 
 const CURR_AGE_INFO = {
-  infants:    { label: 'Infants',    range: '0–12 months', icon: '&#128118;', color: '#FFD9C4' },
-  toddlers:   { label: 'Toddlers',   range: '1–3 years',   icon: '&#128105;', color: '#C8F0C8' },
-  preschool:  { label: 'Preschool',  range: '3–5 years',   icon: '&#127912;', color: '#C4DDFF' },
-  school_age: { label: 'School Age', range: '5–12 years',  icon: '&#128218;', color: '#E8D4FF' }
+  infants:    { _lbl: 'Infants',    _lbl_es: 'Bebés',        _rng: '0–12 months', _rng_es: '0–12 meses',  icon: '&#128118;', color: '#FFD9C4',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get range(){ return typeof LANG!=='undefined'&&LANG==='es'?this._rng_es:this._rng; } },
+  toddlers:   { _lbl: 'Toddlers',   _lbl_es: 'Pequeños',     _rng: '1–3 years',   _rng_es: '1–3 años',    icon: '&#128105;', color: '#C8F0C8',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get range(){ return typeof LANG!=='undefined'&&LANG==='es'?this._rng_es:this._rng; } },
+  preschool:  { _lbl: 'Preschool',  _lbl_es: 'Preescolar',   _rng: '3–5 years',   _rng_es: '3–5 años',    icon: '&#127912;', color: '#C4DDFF',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get range(){ return typeof LANG!=='undefined'&&LANG==='es'?this._rng_es:this._rng; } },
+  school_age: { _lbl: 'School Age', _lbl_es: 'Edad Escolar', _rng: '5–12 years',  _rng_es: '5–12 años',   icon: '&#128218;', color: '#E8D4FF',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get range(){ return typeof LANG!=='undefined'&&LANG==='es'?this._rng_es:this._rng; } }
 };
 
 const CURR_CATS = [
-  { id: 'language',    label: 'Language',         icon: '&#128172;', color: '#2ABFB8' },
-  { id: 'cognitive',   label: 'Cognitive',         icon: '&#129504;', color: '#4A8BC4' },
-  { id: 'social',      label: 'Social-Emotional',  icon: '&#10084;',  color: '#E86B6B' },
-  { id: 'physical',    label: 'Physical',           icon: '&#127939;', color: '#4A9E4A' },
-  { id: 'creativity',  label: 'Creativity & Arts',  icon: '&#127912;', color: '#C8960A' },
-  { id: 'life_skills', label: 'Life Skills',         icon: '&#11088;',  color: '#8B4AB8' },
-  { id: 'health',      label: 'Health & Wellness',  icon: '&#127807;', color: '#2E9E8A' },
-  { id: 'character',   label: 'Character',           icon: '&#127775;', color: '#B87828' }
+  { id: 'language',    _lbl: 'Language',         _lbl_es: 'Lenguaje',             icon: '&#128172;', color: '#2ABFB8',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'cognitive',   _lbl: 'Cognitive',         _lbl_es: 'Cognitivo',            icon: '&#129504;', color: '#4A8BC4',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'social',      _lbl: 'Social-Emotional',  _lbl_es: 'Social-Emocional',     icon: '&#10084;',  color: '#E86B6B',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'physical',    _lbl: 'Physical',           _lbl_es: 'Físico',               icon: '&#127939;', color: '#4A9E4A',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'creativity',  _lbl: 'Creativity & Arts',  _lbl_es: 'Creatividad y Artes',  icon: '&#127912;', color: '#C8960A',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'life_skills', _lbl: 'Life Skills',         _lbl_es: 'Habilidades de Vida', icon: '&#11088;',  color: '#8B4AB8',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'health',      _lbl: 'Health & Wellness',  _lbl_es: 'Salud y Bienestar',    icon: '&#127807;', color: '#2E9E8A',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } },
+  { id: 'character',   _lbl: 'Character',           _lbl_es: 'Carácter',             icon: '&#127775;', color: '#B87828',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; } }
 ];
 
 const ML_LEVELS = ['Beginning', 'Emerging', 'Developing', 'Proficient', 'Advanced'];
@@ -45,6 +61,14 @@ const CURR_THEMES = [
   'Transportation','Insects & Bugs','Ocean & Sea Life','Space & Stars',
   'Sports & Exercise','Holidays Around the World','STEM & Technology','Kindness & Compassion'
 ];
+const CURR_THEMES_ES = [
+  'Todo Sobre Mí','Mi Familia y Amigos','Animales y Naturaleza','Colores y Formas',
+  'Números y Conteo','Estaciones y Clima','Comida y Nutrición','Ayudantes de la Comunidad',
+  'Plantas y Crecimiento','Agua y Ciencia','Música y Movimiento','Sentimientos y Emociones',
+  'Transporte','Insectos y Bichos','Océano y Vida Marina','Espacio y Estrellas',
+  'Deportes y Ejercicio','Fiestas del Mundo','STEM y Tecnología','Amabilidad y Compasión'
+];
+function currThemes() { return (typeof LANG!=='undefined'&&LANG==='es') ? CURR_THEMES_ES : CURR_THEMES; }
 
 const STATUS_OPTS = [
   { val: 'pending',   label: 'Not Started', es: 'No Iniciado', icon: '&#9634;',  cls: '' },
@@ -835,7 +859,7 @@ function adminCurriculumView() {
         <div class="field" style="margin-top:8px;margin-bottom:0">
           <label>${t("This Week's Theme","Tema de Esta Semana")} (${t('starting','desde')} ${weekStart})</label>
           <select onchange="setWeekTheme('${cls.id}','${weekStart}',this.value)">
-            ${CURR_THEMES.map(th=>`<option value="${esc(th)}" ${th===current?'selected':''}>${esc(th)}</option>`).join('')}
+            ${CURR_THEMES.map((th,i)=>`<option value="${esc(th)}" ${th===current?'selected':''}>${esc(typeof LANG!=='undefined'&&LANG==='es'?CURR_THEMES_ES[i]:th)}</option>`).join('')}
           </select>
         </div>
       </div>`;
@@ -1097,7 +1121,7 @@ function aiGeneratorView(defaultAge) {
     </div>
     <div class="field"><label>${t('Weekly Learning Theme','Tema Semanal de Aprendizaje')}</label>
       <select id="gen-theme">
-        ${CURR_THEMES.map(th=>`<option value="${esc(th)}">${esc(th)}</option>`).join('')}
+        ${CURR_THEMES.map((th,i)=>`<option value="${esc(th)}">${esc(typeof LANG!=='undefined'&&LANG==='es'?CURR_THEMES_ES[i]:th)}</option>`).join('')}
       </select>
     </div>
     <button class="btn btn-night" onclick="runCurriculumGenerator()">&#9889; ${t('Generate Lesson Plan','Generar Plan de Clase')}</button>
@@ -1470,24 +1494,51 @@ const LEAD_SCHOOL_AGE = [
    ══════════════════════════════════════════════ */
 
 const SUCCESS_METRICS = [
-  { id: 'creativity',          label: 'Creativity',                icon: '&#127912;', color: '#C8760A',
-    desc: 'Generates original ideas; approaches problems in novel ways; expresses themselves through art, music, building, or storytelling.' },
-  { id: 'leadership',          label: 'Leadership',                icon: '&#11088;',  color: '#8B4AB8',
-    desc: 'Takes initiative; motivates and guides peers; accepts responsibility; shows courage in difficult situations.' },
-  { id: 'initiative',          label: 'Initiative',                icon: '&#128640;', color: '#2E8B57',
-    desc: 'Starts tasks without being told; volunteers; identifies what needs to be done and does it.' },
-  { id: 'problem_solving',     label: 'Problem-Solving',           icon: '&#129504;', color: '#4A5EC4',
-    desc: 'Faces challenges without giving up; tries multiple strategies; asks for help when appropriate; learns from failure.' },
-  { id: 'communication',       label: 'Communication',             icon: '&#128172;', color: '#2ABFB8',
-    desc: 'Expresses ideas clearly; listens actively; adjusts communication style for audience; resolves conflicts through talking.' },
-  { id: 'emotional_regulation',label: 'Emotional Regulation',      icon: '&#10084;',  color: '#E86B6B',
-    desc: 'Manages strong emotions; uses coping strategies; recovers from disappointment; shows empathy for others.' },
-  { id: 'resilience',          label: 'Resilience',                icon: '&#127807;', color: '#4A9E4A',
-    desc: 'Bounces back from setbacks; maintains positive attitude under challenge; does not give up easily; grows from mistakes.' },
-  { id: 'financial_understanding', label: 'Financial Understanding', icon: '&#128176;', color: '#2E8B57',
-    desc: 'Understands needs vs. wants; saving concepts; basic money math; value creation; age-appropriate business concepts.' },
-  { id: 'practical_skills',    label: 'Practical Life Skills',     icon: '&#127968;', color: '#B87828',
-    desc: 'Manages belongings and time; completes responsibilities independently; applies knowledge to real-world situations.' }
+  { id: 'creativity',          _lbl: 'Creativity',                _lbl_es: 'Creatividad',              icon: '&#127912;', color: '#C8760A',
+    desc: 'Generates original ideas; approaches problems in novel ways; expresses themselves through art, music, building, or storytelling.',
+    _desc_es: 'Genera ideas originales; aborda problemas de formas nuevas; se expresa a través del arte, música, construcción o narración.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'leadership',          _lbl: 'Leadership',                _lbl_es: 'Liderazgo',                icon: '&#11088;',  color: '#8B4AB8',
+    desc: 'Takes initiative; motivates and guides peers; accepts responsibility; shows courage in difficult situations.',
+    _desc_es: 'Toma la iniciativa; motiva y guía a sus compañeros; acepta responsabilidades; muestra valentía en situaciones difíciles.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'initiative',          _lbl: 'Initiative',                _lbl_es: 'Iniciativa',               icon: '&#128640;', color: '#2E8B57',
+    desc: 'Starts tasks without being told; volunteers; identifies what needs to be done and does it.',
+    _desc_es: 'Comienza tareas sin que se lo digan; se ofrece voluntariamente; identifica lo que hay que hacer y lo hace.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'problem_solving',     _lbl: 'Problem-Solving',           _lbl_es: 'Resolución de Problemas',  icon: '&#129504;', color: '#4A5EC4',
+    desc: 'Faces challenges without giving up; tries multiple strategies; asks for help when appropriate; learns from failure.',
+    _desc_es: 'Enfrenta desafíos sin rendirse; prueba múltiples estrategias; pide ayuda cuando es necesario; aprende del fracaso.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'communication',       _lbl: 'Communication',             _lbl_es: 'Comunicación',             icon: '&#128172;', color: '#2ABFB8',
+    desc: 'Expresses ideas clearly; listens actively; adjusts communication style for audience; resolves conflicts through talking.',
+    _desc_es: 'Expresa ideas claramente; escucha activamente; adapta el estilo de comunicación; resuelve conflictos mediante el diálogo.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'emotional_regulation',_lbl: 'Emotional Regulation',      _lbl_es: 'Regulación Emocional',     icon: '&#10084;',  color: '#E86B6B',
+    desc: 'Manages strong emotions; uses coping strategies; recovers from disappointment; shows empathy for others.',
+    _desc_es: 'Maneja emociones fuertes; usa estrategias de afrontamiento; se recupera de la decepción; muestra empatía.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'resilience',          _lbl: 'Resilience',                _lbl_es: 'Resiliencia',              icon: '&#127807;', color: '#4A9E4A',
+    desc: 'Bounces back from setbacks; maintains positive attitude under challenge; does not give up easily; grows from mistakes.',
+    _desc_es: 'Se recupera de los contratiempos; mantiene actitud positiva; no se rinde fácilmente; crece con los errores.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'financial_understanding', _lbl: 'Financial Understanding', _lbl_es: 'Comprensión Financiera', icon: '&#128176;', color: '#2E8B57',
+    desc: 'Understands needs vs. wants; saving concepts; basic money math; value creation; age-appropriate business concepts.',
+    _desc_es: 'Comprende necesidades vs. deseos; conceptos de ahorro; matemáticas de dinero; creación de valor; conceptos de negocio.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } },
+  { id: 'practical_skills',    _lbl: 'Practical Life Skills',     _lbl_es: 'Habilidades Prácticas',    icon: '&#127968;', color: '#B87828',
+    desc: 'Manages belongings and time; completes responsibilities independently; applies knowledge to real-world situations.',
+    _desc_es: 'Gestiona pertenencias y tiempo; cumple responsabilidades de forma independiente; aplica conocimiento a situaciones reales.',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
+    get desc_l(){ return typeof LANG!=='undefined'&&LANG==='es'?this._desc_es:this.desc; } }
 ];
 
 const SM_LEVELS = ['Not Yet', 'Beginning', 'Developing', 'Consistent', 'Exceptional'];
@@ -1528,7 +1579,7 @@ function successMetricsView(childId, canEdit) {
         <b style="color:var(--night);font-size:.95rem">${esc(m.label)}</b>
         ${lvl ? `<span style="margin-left:auto;padding:2px 10px;border-radius:20px;font-size:.7rem;font-weight:700;background:${SM_COLORS[SM_LEVELS.indexOf(lvl)]};color:#333">${esc(lvl)}</span>` : ''}
       </div>
-      <p style="font-size:.78rem;color:var(--muted);margin:0 0 8px">${esc(m.desc)}</p>`;
+      <p style="font-size:.78rem;color:var(--muted);margin:0 0 8px">${esc(m.desc_l||m.desc)}</p>`;
     if (canEdit) {
       h += `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
         ${SM_LEVELS.map((l, i) =>

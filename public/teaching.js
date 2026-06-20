@@ -251,7 +251,8 @@ var RESOURCE_LIBRARY = [
 
 var DOMAIN_PLAYBOOKS = {
   language: {
-    label: 'Language & Literacy',
+    _lbl: 'Language & Literacy', _lbl_es: 'Lenguaje y Alfabetización',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#128172;',
     color: '#2ABFB8',
     teacherMindset: 'Language develops through rich, responsive conversation. Your voice, expressions, and wait time matter more than any material.',
@@ -270,7 +271,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Language acquisition happens in zones of proximal development. Always model one step above where the child is right now.'
   },
   cognitive: {
-    label: 'Cognitive Development',
+    _lbl: 'Cognitive Development', _lbl_es: 'Desarrollo Cognitivo',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#129504;',
     color: '#4A8BC4',
     teacherMindset: 'Children are natural scientists. Your role is to create conditions for discovery, not to deliver knowledge to passive recipients.',
@@ -289,7 +291,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Cognitive growth requires productive challenge. Tasks should be just beyond the child\'s independent ability — with your support they can reach it.'
   },
   social: {
-    label: 'Social-Emotional Learning',
+    _lbl: 'Social-Emotional Learning', _lbl_es: 'Aprendizaje Social-Emocional',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#10084;',
     color: '#E86B6B',
     teacherMindset: 'Social-emotional skills are the foundation of all other learning. A child who cannot self-regulate cannot learn effectively.',
@@ -308,7 +311,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Children co-regulate before they self-regulate. Your calm nervous system is a teaching tool — your regulation teaches theirs.'
   },
   physical: {
-    label: 'Physical Development',
+    _lbl: 'Physical Development', _lbl_es: 'Desarrollo Físico',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#127939;',
     color: '#4A9E4A',
     teacherMindset: 'Physical development is not a break from learning — it IS learning. Motor skills build the brain pathways used for reading, writing, and math.',
@@ -327,7 +331,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Fine motor skills directly predict writing readiness. Every cutting, pinching, and threading activity is pre-writing practice.'
   },
   creativity: {
-    label: 'Creativity & Arts',
+    _lbl: 'Creativity & Arts', _lbl_es: 'Creatividad y Artes',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#127912;',
     color: '#C8960A',
     teacherMindset: 'Process matters more than product. A child deeply engaged in exploration learns more than one copying a teacher model.',
@@ -346,7 +351,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Creativity is a developmental skill. Children move from pure exploration → intentional expression → symbolic communication. Support each stage.'
   },
   life_skills: {
-    label: 'Life Skills & Independence',
+    _lbl: 'Life Skills & Independence', _lbl_es: 'Habilidades de Vida e Independencia',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#11088;',
     color: '#8B4AB8',
     teacherMindset: 'Every time you do something for a child that they could do themselves (even slowly), you take away a learning opportunity.',
@@ -365,7 +371,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'Independence builds executive function. Children who manage their environment (belongings, routines, self-care) develop stronger self-regulation.'
   },
   health: {
-    label: 'Health & Wellness',
+    _lbl: 'Health & Wellness', _lbl_es: 'Salud y Bienestar',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#127807;',
     color: '#2E9E8A',
     teacherMindset: 'Health habits established in early childhood become lifelong patterns. You are literally shaping how children will care for themselves as adults.',
@@ -384,7 +391,8 @@ var DOMAIN_PLAYBOOKS = {
     devNote: 'The hand washing habit alone, if consistently taught in early childhood, prevents more illness than almost any other intervention.'
   },
   character: {
-    label: 'Character & Values',
+    _lbl: 'Character & Values', _lbl_es: 'Carácter y Valores',
+    get label(){ return typeof LANG!=='undefined'&&LANG==='es'?this._lbl_es:this._lbl; },
     icon: '&#127775;',
     color: '#B87828',
     teacherMindset: 'Character is caught as much as it is taught. Who you are in the classroom teaches values more powerfully than any lesson.',
@@ -1006,7 +1014,7 @@ function copyTeacherNote(el) {
   teacherCurriculumView = function() {
     if (CURR_SUB === 'coach')     return teacherCoachView();
     if (CURR_SUB === 'resources') return resourceLibraryView();
-    if (!_prevTeacher) return '<p>Curriculum loading...</p>';
+    if (!_prevTeacher) return '<p>' + t('Curriculum loading...','Cargando el Currículo...') + '</p>';
 
     var html = _prevTeacher();
     if (typeof html !== 'string') return html;
