@@ -532,9 +532,13 @@ footer{
 .cc-top h3{font-size:1.15rem;font-family:'Fredoka',sans-serif;font-weight:600;margin:0}
 .cc-top .coach-age-icon{font-size:2rem;line-height:1}
 .cc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-.cc-item{background:rgba(255,255,255,.12);border-radius:10px;padding:10px 12px}
-.cc-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;opacity:.75;margin-bottom:3px;font-weight:700}
-.cc-sub{font-size:.84rem;line-height:1.4;opacity:.95}
+.cc-item{background:rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;color:#fff}
+.cc-item b{color:#fff;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;opacity:.75;display:block;margin-bottom:5px;font-weight:700}
+.cc-item p{color:#fff;font-size:.85rem;line-height:1.55;margin:0}
+.cc-item-wide{grid-column:1/-1}
+.cc-icon{font-size:2rem;line-height:1;flex-shrink:0}
+.cc-title{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;opacity:.8;margin-bottom:3px;font-weight:700;color:#fff}
+.cc-sub{font-size:.86rem;line-height:1.4;opacity:.92;color:#fff}
 
 /* ── Coverage bar ── */
 .coach-coverage{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
